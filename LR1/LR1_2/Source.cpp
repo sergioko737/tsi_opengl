@@ -1,9 +1,11 @@
 #include<Windows.h> 
 #include <GL/glut.h>    /*Äëÿ Linux è Windows*/ 
-#include<vector> 
-#include<fstream>
+#include <vector> 
+#include <fstream>
+#include <math.h>
 
 using namespace std;
+
 struct Point
 {
 	int x, y;
@@ -16,6 +18,7 @@ void moveto(Point p);
 vector<Point> point;
 vector<int>code;
 Point currentPoint;
+
 int main(int argc, char * argv[])
 {
 	currentPoint.x = 0; currentPoint.y = 0;
@@ -48,9 +51,9 @@ void display()
 	readFromFile();
 	glColor3d(1, 0, 0);
 	for (int i = 0; i < code.size(); i++)
-		if (code[i] == 0)
+		if (code[i] < 0)
 		{
-			moveto(point[i]);
+			moveto(point[abs(i)]);
 		}
 		else
 		{
@@ -60,7 +63,7 @@ void display()
 }
 void readFromFile()
 {
-	fstream f("points.txt", ios::in);
+	fstream f("ecopoints.txt", ios::in);
 	int pointNumber;
 	int x, y; Point p;
 	f >> pointNumber;
