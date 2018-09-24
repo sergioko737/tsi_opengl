@@ -53,11 +53,11 @@ void display()
 	for (int i = 0; i < code.size(); i++)
 		if (code[i] < 0)
 		{
-			moveto(point[abs(i)]);
+			moveto(point[abs(code[i])-1]);
 		}
 		else
 		{
-			lineto(point[i]);
+			lineto(point[(code[i])-1]);
 		}
 	glFlush();
 }
