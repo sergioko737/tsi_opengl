@@ -50,6 +50,7 @@ void display()
 	glColor3f(0, 0, 0);
 	readFromFile();
 	glColor3d(1, 0, 0);
+	glLineWidth(3.0);
 	for (int i = 0; i < code.size(); i++)
 		if (code[i] < 0)
 		{
