@@ -1,5 +1,3 @@
-#include <GL/gl.h>
-#include <GL/glu.h>
 #include <stdlib.h>
 #include <GL/glut.h>
 #include<Windows.h> 
@@ -7,12 +5,12 @@
 using namespace std;
 
 GLfloat ctrlpoints[4][3] = {
-	{ -4.0, -4.0, 0.0 },{ -2.0, 4.0, 0.0 },
-	{ 2.0, -4.0, 0.0 },{ 4.0, 4.0, 0.0 } };
+	{ 0.0, -4.0, 0.0 },{ -4.0, 2.0, 0.0 },
+	{ -1.0, 4.0, 0.0 },{ 0.0, 2.0, 0.0 } };
 
 void init(void)
 {
-	glClearColor(0.0, 0.0, 0.0, 0.0);
+	glClearColor(0.0, 0.0, 0.0, 0.0); // Background color
 	glShadeModel(GL_FLAT);
 	glMap1f(GL_MAP1_VERTEX_3, 0.0, 1.0, 3, 4, &ctrlpoints[0][0]);
 	glEnable(GL_MAP1_VERTEX_3);
@@ -23,7 +21,8 @@ void display(void)
 	int i;
 
 	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(1.0, 1.0, 1.0);
+	glColor3f(1.0, 0.0, 0.0);
+	glLineWidth(5.0);
 	glBegin(GL_LINE_STRIP);
 	for (i = 0; i <= 30; i++)
 		glEvalCoord1f((GLfloat)i / 30.0);
