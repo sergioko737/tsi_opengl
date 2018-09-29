@@ -45,7 +45,7 @@ void reshape(int w, int h)
 
 void display()
 {
-	GLdouble plane[4] = { -1, 1, 0, 0 };
+	GLdouble plane[4] = { 1, -1, 0, 0 };
 	glClipPlane(GL_CLIP_PLANE0, plane);
 	glEnable(GL_CLIP_PLANE0);
 	glClearColor(1, 1, 1, 0);
