@@ -19,8 +19,11 @@ void display(void)
 		glMap1f(GL_MAP1_VERTEX_3, 0.0, 2.0, 3, 4, &ctrlpoints[t][0]);
 		glEnable(GL_MAP1_VERTEX_3);
 		glBegin(GL_LINE_STRIP);
-		for (i = 0; i <= 60; i++)
+		float r = 0, g = 1;
+		for (i = 0; i <= 60; i++) {
 			glEvalCoord1f((GLfloat)i / 30.0);
+			glColor3f(r+=0.06 , g-=0.03, 0);
+		}
 		glEnd();
 	}
 	/* Display control points */
