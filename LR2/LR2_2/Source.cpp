@@ -1,37 +1,33 @@
-#include <stdlib.h>
 #include <GL/glut.h>
-#include<Windows.h> 
 
 using namespace std;
 
-GLfloat ctrlpoints[4][3] = {
-	{ 0.0, -4.0, 0.0 },{ -4.0, 2.0, 0.0 },
-	{ -1.0, 4.0, 0.0 },{ 0.0, 2.0, 0.0 } };
-
-void init(void)
-{
-	glClearColor(0.0, 0.0, 0.0, 0.0); // Background color
-	glShadeModel(GL_FLAT);
-	glMap1f(GL_MAP1_VERTEX_3, 0.0, 1.0, 3, 4, &ctrlpoints[0][0]);
-	glEnable(GL_MAP1_VERTEX_3);
-}
+GLfloat ctrlpoints[8][3] = {
+	{ 0.0, -3.0, 0.0 },{ -4.0, 2.0, 0.0 },
+	{ -1.0, 4.0, 0.0 },{ 0.0, 2.0, 0.0 },
+	{ 0.0, -3.0, 0.0 },{ 4.0, 2.0, 0.0 },
+	{ 1.0, 4.0, 0.0 },{ 0.0, 2.0, 0.0 } };
 
 void display(void)
 {
-	int i;
-
+	int t, i;
+	glClearColor(0, 0, 0, 0); // background
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0, 0.0, 0.0);
 	glLineWidth(5.0);
-	glBegin(GL_LINE_STRIP);
-	for (i = 0; i <= 30; i++)
-		glEvalCoord1f((GLfloat)i / 30.0);
-	glEnd();
-	/* The following code displays the control points as dots. */
+	for (t = 0; t < 5; t += 4) {
+		glMap1f(GL_MAP1_VERTEX_3, 0.0, 2.0, 3, 4, &ctrlpoints[t][0]);
+		glEnable(GL_MAP1_VERTEX_3);
+		glBegin(GL_LINE_STRIP);
+		for (i = 0; i <= 60; i++)
+			glEvalCoord1f((GLfloat)i / 30.0);
+		glEnd();
+	}
+	/* Display control points */
 	glPointSize(5.0);
 	glColor3f(1.0, 1.0, 0.0);
 	glBegin(GL_POINTS);
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 8; i++)
 		glVertex3fv(&ctrlpoints[i][0]);
 	glEnd();
 	glFlush();
@@ -56,10 +52,9 @@ int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-	glutInitWindowSize(500, 500);
-	glutInitWindowPosition(100, 100);
+	glutInitWindowSize(800, 800);
+	glutInitWindowPosition(500, 100);
 	glutCreateWindow(argv[0]);
-	init();
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutMainLoop();
