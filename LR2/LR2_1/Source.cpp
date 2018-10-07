@@ -11,6 +11,7 @@ struct Point
 	int x, y;
 };
 void reshape(int w, int h);
+void init(void);
 void display();
 void readFromFile();
 void lineto(Point p);

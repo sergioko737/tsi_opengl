@@ -2,7 +2,7 @@
 
 using namespace std;
 
-GLfloat ctrlpoints[8][3] = {
+GLfloat heartshape[8][3] = {
 	{ 0.0, -3.0, 0.0 },{ -4.0, 2.0, 0.0 },
 	{ -1.0, 4.0, 0.0 },{ 0.0, 2.0, 0.0 },
 	{ 0.0, -3.0, 0.0 },{ 4.0, 2.0, 0.0 },
@@ -16,7 +16,7 @@ void display(void)
 	glColor3f(1.0, 0.0, 0.0);
 	glLineWidth(5.0);
 	for (t = 0; t < 5; t += 4) {
-		glMap1f(GL_MAP1_VERTEX_3, 0.0, 2.0, 3, 4, &ctrlpoints[t][0]);
+		glMap1f(GL_MAP1_VERTEX_3, 0.0, 2.0, 3, 4, &heartshape[t][0]);
 		glEnable(GL_MAP1_VERTEX_3);
 		glBegin(GL_LINE_STRIP);
 		float r = 0, g = 1;
@@ -27,12 +27,12 @@ void display(void)
 		glEnd();
 	}
 	/* Display control points */
-	glPointSize(5.0);
-	glColor3f(1.0, 1.0, 0.0);
-	glBegin(GL_POINTS);
-	for (i = 0; i < 8; i++)
-		glVertex3fv(&ctrlpoints[i][0]);
-	glEnd();
+	//glPointSize(5.0);
+	//glColor3f(1.0, 1.0, 0.0);
+	//glBegin(GL_POINTS);
+	//for (i = 0; i < 8; i++)
+	//	glVertex3fv(&heartshape[i][0]);
+	//glEnd();
 	glFlush();
 }
 

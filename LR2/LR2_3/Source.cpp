@@ -1,54 +1,84 @@
 #include <GL/glut.h>
 
-using namespace std;
+GLUnurbsObj* nobj;
 
-GLfloat point[15][3] = { { 20, 37, 0 },{ 25, 25, 0 },{ 28, 25, 0 },{ 60, 20, 0 },{ 70, 40, 0 },{ 80, 55, 0 },{ 32, 61, 0 },{ 25, 58, 0 },{ 27, 55, 0.0 },{ 22, 63, 0 },{ 65, 70, 0 },{ 55, 80, 0 },{ 30, 80, 0 },{ 35, 80, 0 },{ 20, 70, 0.0 } };
+GLfloat ctlarray[][3] = {
+	{ 0 ,-0.8, 0.0 },
+	{ -0.8 , 0.8, 0.0 },
+	{ 0 , 0.4, 0.0 },
+	{ 0.8 , 0.8, 0.0 },
+	{ 0, -0.8, 0.0 }
+};
 
-GLfloat node[30] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-
-
-void display()
+void init()
 {
-	GLUnurbs* nurbs = gluNewNurbsRenderer();
-	glClearColor(0, 0, 1, 0);
+	glClearColor(1, 1, 1, 1);
+	nobj = gluNewNurbsRenderer();
+	gluNurbsProperty(nobj, GLU_SAMPLING_TOLERANCE, 25.0);
+}
+
+void Display()
+{
+	GLfloat knot_1[] = { 0, 0, 1, 2, 3, 4, 4 };
+	GLfloat knot_2[] = { 0, 0, 0, 1, 2, 3, 3, 3 };
+	GLfloat knot_3[] = { 0, 0, 0, 0, 1, 2, 2, 2, 2 };
+	GLfloat knot_4[] = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 };
+
+	GLfloat knop_1[] = { 0, 1, 2, 3, 4, 5, 6 };
+	GLfloat knop_2[] = { 0, 1, 2, 3, 4, 5, 6, 7 };
+	GLfloat knop_3[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+	GLfloat knop_4[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
 	glClear(GL_COLOR_BUFFER_BIT);
+	glLineWidth(3.0);
 
-	glLineWidth(4);
-	glColor3d(1, 0, 0);
-	gluBeginCurve(nurbs);
-	gluNurbsCurve(nurbs, 30, &node[0], 3, &point[0][0], 15, GL_MAP1_VERTEX_3);
-	gluEndCurve(nurbs);
+	//glColor3f(0.9, 0.85, 0.1);
+	// gluNurbsCurve(nobj, 7, knot_1, 3, &ctlarray[0][0], 2, GL_MAP1_VERTEX_3);
 
-	glutSwapBuffers();
-	gluDeleteNurbsRenderer(nurbs);
+	//glColor3f(0.1, 0.85, 0.9);
+	//gluNurbsCurve(nobj, 8, knot_2, 3, &ctlarray[0][0], 3, GL_MAP1_VERTEX_3);
 
+	 //glColor3f(0.85, 0.4, 0.1);
+	 //gluNurbsCurve(nobj, 9, knot_3, 3, &ctlarray[0][0], 4, GL_MAP1_VERTEX_3);
+
+	 //glColor3f(0.9, 0.1, 0.85);
+	 //gluNurbsCurve(nobj,10, knot_4, 3, &ctlarray[0][0], 5, GL_MAP1_VERTEX_3);
+
+
+	glColor3f(1, 0, 0);
+	//gluNurbsCurve(nobj, 7, knop_1, 3, &ctlarray[0][0], 2, GL_MAP1_VERTEX_3);
+
+	glColor3f(0, 1, 0);
+	gluNurbsCurve(nobj, 8, knop_2, 3, &ctlarray[0][0], 3, GL_MAP1_VERTEX_3);
+
+	//glColor3f(0, 0, 1);
+	//gluNurbsCurve(nobj, 9, knop_3, 3, &ctlarray[0][0], 4, GL_MAP1_VERTEX_3);
+
+	//glColor3f(0.9, 0.1, 0.85);
+	//gluNurbsCurve(nobj, 10, knop_4, 3, &ctlarray[0][0], 5, GL_MAP1_VERTEX_3);
+
+	glPointSize(4.0);
+	glColor3f(0.0, 0.0, 1);
+	glBegin(GL_POINTS);
+	for (int i = 0; i < 5; ++i)
+	{
+		glVertex3f(ctlarray[i][0], ctlarray[i][1], ctlarray[i][2]);
+	}
+	glEnd();
+	glFlush();
 }
 
-
-void reshape(int w, int h)
-{
-	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	if (w <= h)
-		glOrtho(100.0, 100.0, 100.0*(GLfloat)h / (GLfloat)w,
-			100.0*(GLfloat)h / (GLfloat)w, 100.0, 100.0);
-	else
-		glOrtho(100.0*(GLfloat)w / (GLfloat)h,
-			100.0*(GLfloat)w / (GLfloat)h, 100.0, 100.0, 100.0, 100.0);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-}
-
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+
+	glutInitDisplayMode(GLUT_RGBA | GLUT_SINGLE);
 	glutInitWindowSize(800, 800);
-	glutInitWindowPosition(500, 100);
-	glutCreateWindow(argv[0]);
-	glutDisplayFunc(display);
-	glutReshapeFunc(reshape);
+	glutInitWindowPosition(100, 100);
+	glutCreateWindow("LAB 3");
+	init();
+	glutDisplayFunc(Display);
 	glutMainLoop();
+
 	return 0;
 }
