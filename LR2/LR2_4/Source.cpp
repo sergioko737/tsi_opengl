@@ -1,72 +1,93 @@
-#include <GL/glut.h>
-//#include <stdlib.h>
+#include<Windows.h> 
+#include <GL/glut.h>    /*Äëÿ Linux è Windows*/ 
+#include <vector> 
+#include <fstream>
+#include <math.h>
 
 using namespace std;
 
-GLfloat ctrlpoints[8][3] = {
-	{ 0, -2, 0 },{ -4, 2, 0 },
-	{ -1, 3, 0 },{ 0, 2, 0 },
-	{ 0, -2, 0 },{ 4, 2, 0 },
-	{ 1,  3, 0 },{ 0, 2, 0 }
+struct Point
+{
+	int x, y;
 };
+void reshape(int w, int h);
+void display();
+void readFromFile();
+void lineto(Point p);
+void moveto(Point p);
+vector<Point> point;
+vector<int>code;
+Point currentPoint;
 
-GLfloat node[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 };
-
-
-void display(void) {
-	int i, j;
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glColor3f(1.0, 1.0, 1.0);
-	glPushMatrix();
-	glRotatef(0.0, 0.0, 0.0, 0.0);
-	for (j = 0; j <= 8; j++) {
-		glBegin(GL_LINE_STRIP);
-		for (i = 0; i <= 30; i++)
-			glEvalCoord2f((GLfloat)i / 30.0, (GLfloat)j / 8.0);
-		glEnd();
-		glBegin(GL_LINE_STRIP);
-		for (i = 0; i <= 30; i++)
-			glEvalCoord2f((GLfloat)j / 8.0, (GLfloat)i / 30.0);
-		glEnd();
-	}
-	glPopMatrix();
-	glFlush();
-
-}
-
-void init(void) {
-	glClearColor(0, 0, 0, 0);
-	glMap2f(GL_MAP2_VERTEX_3, 0, 1, 3, 4, 0, 1, 12, 4, &ctrlpoints[0][0]);
-	glEnable(GL_MAP2_VERTEX_3);
-	glMapGrid2f(20, 0, 1, 20, 0, 1);
-	glEnable(GL_DEPTH_TEST);
-	glShadeModel(GL_FLAT);
-}
-
-void reshape(int w, int h) {
-	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	if (w <= h) {
-		glOrtho(-5, 5, -5 * (GLfloat)h / (GLfloat)w, 5 * (GLfloat)h / (GLfloat)w, -5, 5);
-	}
-	else {
-		glOrtho(-5.0*(GLfloat)w / (GLfloat)h, 5.0*(GLfloat)w / (GLfloat)h, -5.0, 5.0, -5.0, 5.0);
-	}
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-}
-
-int main(int argc, char** argv) {
+int main(int argc, char * argv[])
+{
+	currentPoint.x = 0; currentPoint.y = 0;
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-	glutInitWindowSize(500, 500);
-	glutInitWindowPosition(100, 100);
-	glutCreateWindow(argv[0]);
-	init();
+	glutInitWindowSize(800, 600);
+	glutInitWindowPosition(100, 150);
+	glutCreateWindow("LAB 2_3");
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutMainLoop();
 	return 0;
+}
+
+void reshape(int w, int h)
+{
+	glViewport(0, 0, w, h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(0, 100, 0, 100);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+}
+
+void display()
+{
+	glClearColor(1, 1, 1, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	readFromFile();
+	glColor3d(1, 0, 0);
+	glLineWidth(3.0);
+	for (int i = 0; i < code.size(); i++)
+		if (code[i] < 0)
+		{
+			moveto(point[abs(code[i]) - 1]);
+		}
+		else
+		{
+			lineto(point[(code[i]) - 1]);
+		}
+	glFlush();
+}
+void readFromFile()
+{
+	fstream f("ecopoints.txt", ios::in);
+	int pointNumber;
+	int x, y; Point p;
+	f >> pointNumber;
+	for (int i = 0; i < pointNumber; i++)
+	{
+		f >> p.x >> p.y;
+		point.push_back(p);
+	}
+	int movesNumber, m;
+	f >> movesNumber;
+	for (int i = 0; i < movesNumber; i++)
+	{
+		f >> m; code.push_back(m);
+	}
+	f.close();
+}
+
+void moveto(Point p) {
+	currentPoint.x = p.x; currentPoint.y = p.y;
+}
+void lineto(Point p) {
+	glBegin(GL_LINES);
+	glVertex2i(currentPoint.x, currentPoint.y);
+	glVertex2i(p.x, p.y);
+	glEnd();
+	currentPoint.x = p.x; currentPoint.y = p.y;
 }

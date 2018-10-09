@@ -23,15 +23,15 @@ void display()
 	gluNurbsCurve(nurbs, 10, knots, 3, &right[0][0], 5, GL_MAP1_VERTEX_3);
 	gluEndCurve(nurbs);
 
-	//glPointSize(4.0);
-	//glColor3f(0.0, 0.0, 1);
-	//glBegin(GL_POINTS);
-	//for (int i = 0; i < 5; ++i)
-	//{
-	//	glVertex3f(left[i][0], left[i][1], left[i][2]);
-	//	glVertex3f(right[i][0], right[i][1], right[i][2]);
-	//}
-	//glEnd();
+	glPointSize(4.0);
+	glColor3f(0.0, 0.0, 1);
+	glBegin(GL_POINTS);
+	for (int i = 0; i < 5; ++i)
+	{
+		glVertex3f(left[i][0], left[i][1], left[i][2]);
+		glVertex3f(right[i][0], right[i][1], right[i][2]);
+	}
+	glEnd();
 
 	gluDeleteNurbsRenderer(nurbs);
 	glFlush();
