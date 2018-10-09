@@ -6,6 +6,8 @@
 
 using namespace std;
 
+GLfloat points[31][3];
+
 struct Point
 {
 	int x, y;
@@ -26,7 +28,7 @@ int main(int argc, char * argv[])
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(800, 600);
 	glutInitWindowPosition(100, 150);
-	glutCreateWindow("LAB 2_3");
+	glutCreateWindow("LAB 2_4");
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutMainLoop();
@@ -50,6 +52,17 @@ void display()
 	readFromFile();
 	glColor3d(1, 0, 0);
 	glLineWidth(3.0);
+	for (int t = 0; t < 20; t += 8) {
+		glMap1f(GL_MAP1_VERTEX_3, 0.0, 2.0, 3, 4, &points[t][0]);
+		glEnable(GL_MAP1_VERTEX_3);
+		glBegin(GL_LINE_STRIP);
+		float r = 0, g = 1;
+		for (int i = 0; i <= 60; i++) {
+			glEvalCoord1f((GLfloat)i / 30.0);
+			glColor3f(r += 0.06, g -= 0.03, 0);
+		}
+		glEnd();
+	}
 	for (int i = 0; i < code.size(); i++)
 		if (code[i] < 0)
 		{
@@ -65,12 +78,15 @@ void readFromFile()
 {
 	fstream f("ecopoints.txt", ios::in);
 	int pointNumber;
-	int x, y; Point p;
+	Point p;
 	f >> pointNumber;
 	for (int i = 0; i < pointNumber; i++)
 	{
 		f >> p.x >> p.y;
 		point.push_back(p);
+		points[i][0] = p.x;
+		points[i][1] = p.y;
+		points[i][2] = 0.0;
 	}
 	int movesNumber, m;
 	f >> movesNumber;
