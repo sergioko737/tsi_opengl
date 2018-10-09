@@ -27,7 +27,7 @@ int main(int argc, char * argv[])
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(800, 600);
 	glutInitWindowPosition(100, 150);
-	glutCreateWindow("OpenGL lesson 3");
+	glutCreateWindow("LR2_1");
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutMainLoop();
