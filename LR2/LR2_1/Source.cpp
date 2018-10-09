@@ -1,5 +1,5 @@
-#include<Windows.h> 
-#include <GL/glut.h>    /*Äëÿ Linux è Windows*/ 
+#include <Windows.h> 
+#include <GL/glut.h>
 #include <vector> 
 #include <fstream>
 #include <math.h>
@@ -27,7 +27,7 @@ int main(int argc, char * argv[])
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(800, 600);
 	glutInitWindowPosition(100, 150);
-	glutCreateWindow("LR2_1");
+	glutCreateWindow("LAB 2_1");
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutMainLoop();
@@ -54,8 +54,8 @@ void display()
 	glColor3f(0, 0, 0);
 	readFromFile();
 	glColor3d(1, 0, 0);
-	glLineWidth(3.0);
-	for (int i = 0; i < code.size(); i++)
+	glLineWidth(4.0);
+	for (unsigned int i = 0; i < code.size(); i++)
 		if (code[i] < 0)
 		{
 			moveto(point[abs(code[i]) - 1]);
@@ -71,7 +71,7 @@ void readFromFile()
 {
 	fstream f("ecopoints.txt", ios::in);
 	int pointNumber;
-	int x, y; Point p;
+	Point p;
 	f >> pointNumber;
 	for (int i = 0; i < pointNumber; i++)
 	{

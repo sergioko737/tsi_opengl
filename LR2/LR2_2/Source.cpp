@@ -57,7 +57,7 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(800, 800);
 	glutInitWindowPosition(500, 100);
-	glutCreateWindow(argv[0]);
+	glutCreateWindow("LAB 2_2");;
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutMainLoop();
