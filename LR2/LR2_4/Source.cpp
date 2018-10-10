@@ -52,7 +52,7 @@ void display()
 	readFromFile();
 	glColor3d(1, 0, 0);
 	glLineWidth(3.0);
-	for (int t = 0; t < 20; t += 8) {
+	for (int t = 0; t < 17; t += 8) {
 		glMap1f(GL_MAP1_VERTEX_3, 0.0, 2.0, 3, 4, &points[t][0]);
 		glEnable(GL_MAP1_VERTEX_3);
 		glBegin(GL_LINE_STRIP);
