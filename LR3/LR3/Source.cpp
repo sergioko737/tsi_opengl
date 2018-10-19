@@ -50,8 +50,10 @@ void display() {
 	glVertex2i(550, 450);
 	glEnd();
 
+	// Backup matrix and reset coordinates
 	glPushMatrix();
 	glLoadIdentity();
+
 	int y = glutGet(GLUT_WINDOW_HEIGHT);
 	int x = glutGet(GLUT_WINDOW_WIDTH);
 	glColor3d(0, 0, 0);
@@ -68,9 +70,25 @@ void display() {
 
 void processNormalKeys(unsigned char key, int x, int y) {
 	if (key == 27) exit(0);
-	if (key == 65) {
+	// Keys Q,W,A,S moves square by diagonals
+	if (key == 87) {
 		glMatrixMode(GL_MODELVIEW);
 		glTranslated(20, 20, 0);
+		display();
+	}
+	if (key == 81) {
+		glMatrixMode(GL_MODELVIEW);
+		glTranslated(-20, 20, 0);
+		display();
+	}
+	if (key == 65) {
+		glMatrixMode(GL_MODELVIEW);
+		glTranslated(-20, -20, 0);
+		display();
+	}
+	if (key == 83) {
+		glMatrixMode(GL_MODELVIEW);
+		glTranslated(20, -20, 0);
 		display();
 	}
 }
