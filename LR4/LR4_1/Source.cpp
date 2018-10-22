@@ -15,7 +15,7 @@ int main(int argc, char * argv[])
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
 
 	glutInitWindowSize(800, 600);
-	glutCreateWindow("OpenGL lesson 6");
+	glutCreateWindow("LR4_1");
 
 	glutReshapeFunc(reshape);
 	glutDisplayFunc(display);
@@ -32,7 +32,9 @@ void reshape(int w, int h)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-15, 15, -15, 15, -15, 15);
+	//glOrtho(-30, 30, -30, 30, -30, 30);
+	gluPerspective(90, 2, 0, 30);
+	gluLookAt(0, 0, 40, 0, 0, 0, 0, 1, 0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glClearColor(1, 1, 1, 0);
@@ -43,7 +45,26 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0, 0.0, 0.0);
 
-	glutWireTeapot(5);
+	glutWireTeapot(7);
+
+	glPushMatrix();
+	glLoadIdentity();
+
+	int y = glutGet(GLUT_WINDOW_HEIGHT);
+	int x = glutGet(GLUT_WINDOW_WIDTH);
+	glColor3d(0, 0, 0);
+	glBegin(GL_LINES);
+	glVertex3f(0, 0, 0);
+	glVertex3f(100, 0, 0);
+	glVertex3f(0, 0, 0);
+	glVertex3f(0, 100, 0);
+	glColor3d(0, 1, 0);
+	glLineWidth(4.0);
+	glVertex3f(0, 0, 0);
+	glVertex3f(-15, -15, 0);
+	glEnd();
+
+	glPopMatrix();
 
 	glutSwapBuffers();
 }
@@ -64,6 +85,16 @@ void processSpecialKeys(int key, int x, int y) {
 	case GLUT_KEY_DOWN:
 		glMatrixMode(GL_MODELVIEW);
 		glTranslated(0, -1, 0);
+		display();
+		break;
+	case GLUT_KEY_LEFT:
+		glMatrixMode(GL_MODELVIEW);
+		glTranslated(-1, 0, 0);
+		display();
+		break;
+	case GLUT_KEY_RIGHT:
+		glMatrixMode(GL_MODELVIEW);
+		glTranslated(1, 0, 0);
 		display();
 		break;
 	}
