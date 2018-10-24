@@ -28,9 +28,9 @@ Point sp;
 Point kp;
 string s = "s.txt";
 string k = "k.txt";
+bool rotationOn = false;
 
-int main(int argc, char * argv[])
-{
+int main(int argc, char * argv[]) {
 	if (spoint.size() == 0) readFromFile(s, sp, &spoint, &scode);
 	if (kpoint.size() == 0)	readFromFile(k, kp, &kpoint, &kcode);
 	currentPoint.x = 0; currentPoint.y = 0;
@@ -58,8 +58,7 @@ void reshape(int w, int h) {
 
 }
 
-void display()
-{
+void display() {
 	glClearColor(1, 1, 1, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(0, 0, 0);
@@ -67,42 +66,56 @@ void display()
 	glLineWidth(4.0);
 
 	glPushMatrix();
+	if (rotationOn)
+	{
+		glRotated((360.0 / 96), 0, 0, 1);
+	}
 	drawLetter(spoint, scode);
+
 	glPopMatrix();
 
 	drawLetter(kpoint, kcode);
 
+	// Backup matrix and reset coordinates
+	glPushMatrix();
+	glLoadIdentity();
+	int y = glutGet(GLUT_WINDOW_HEIGHT);
+	int x = glutGet(GLUT_WINDOW_WIDTH);
+	glColor3d(0, 0, 0);
+	glLineWidth(1.0);
+	glBegin(GL_LINES);
+	glVertex2f(x / 2, 0);
+	glVertex2f(x / 2, y);
+	glVertex2f(0, y / 2);
+	glVertex2f(x, y / 2);
+	glEnd();
+	glPopMatrix();
+
 	glFlush();
 }
 
-void readFromFile(string letter, Point p, vector<Point> *point, vector<int> *code)
-{
+void readFromFile(string letter, Point p, vector<Point> *point, vector<int> *code) {
 	fstream f(letter, ios::in);
 	int pointNumber;
-	
 	f >> pointNumber;
-	for (int i = 0; i < pointNumber; i++)
-	{
+	for (int i = 0; i < pointNumber; i++) {
 		f >> p.x >> p.y;
 		point->push_back(p);
 	}
 	int movesNumber, m;
 	f >> movesNumber;
-	for (int i = 0; i < movesNumber; i++)
-	{
+	for (int i = 0; i < movesNumber; i++) {
 		f >> m; code->push_back(m);
 	}
 	f.close();
 }
 
 void drawLetter(vector<Point>point, vector<int>code) {
+
 	for (unsigned int i = 0; i < code.size(); i++)
-		if (code[i] < 0)
-		{
+		if (code[i] < 0) {
 			moveto(point[abs(code[i]) - 1]);
-		}
-		else
-		{
+		} else{
 			lineto(point[(code[i]) - 1]);
 		}
 }
@@ -140,13 +153,13 @@ void processNormalKeys(unsigned char key, int x, int y) {
 	}
 	// key + to enlarge
 	if (key == 43) {
-		glTranslated(-40, -40, 0);
+		glTranslated(-70, -40, 0);
 		glScaled(1.1, 1.1, 0);
 		display();
 	}
 	// key - to reduce size
 	if (key == 45) {
-		glTranslated(40, 40, 0);
+		glTranslated(70, 40, 0);
 		glScaled(0.9, 0.9, 0);
 		display();
 	}
@@ -171,13 +184,15 @@ void processSpecialKeys(int key, int x, int y) {
 		display();
 		break;
 	case GLUT_KEY_HOME:
-		glTranslatef(14, -13.5, 0);
+		glTranslatef(700, 400, 0);
 		glRotated(2, 0, 0, 1);
+		glTranslatef(-700, -400, 0);
 		display();
 		break;
 	case GLUT_KEY_END:
-		glTranslatef(-13.5, 14, 0);
+		glTranslatef(700, 400, 0);
 		glRotated(-2, 0, 0, 1);
+		glTranslatef(-700, -400, 0);
 		display();
 		break;
 	}
