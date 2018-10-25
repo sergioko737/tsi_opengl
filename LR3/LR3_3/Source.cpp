@@ -16,14 +16,17 @@ void display();
 void drawLetter(vector<Point>point, vector<int>code);
 void processNormalKeys(unsigned char key, int x, int y);
 void processSpecialKeys(int key, int x, int y);
+
 void readFromFile(string letter, Point p, vector<Point> *point, vector<int> *code);
 void lineto(Point p);
 void moveto(Point p);
-void rotateCW();
-void rotateCCW();
-void drawS();
+
 float leftRotate = 0;
 float rightRotate = 0;
+int transXL = 0;
+int transXR = 0;
+int transY = 0;
+
 vector<Point> spoint;
 vector<int>scode;
 vector<Point> kpoint;
@@ -42,7 +45,7 @@ int main(int argc, char * argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(1400, 800);
-	glutCreateWindow("LAB 2_1");
+	glutCreateWindow("LR 3_3");
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(processNormalKeys);
@@ -71,16 +74,16 @@ void display() {
 	glLineWidth(4.0);
 
 	glPushMatrix();
-	glTranslatef(700, 400, 0);
+	glTranslatef(transXL, transY, 0);
 	glRotated(leftRotate, 0, 0, 1);
-	glTranslatef(-700, -400, 0);
-	drawS();
+	glTranslatef(-transXL, -transY, 0);
+	drawLetter(spoint, scode);
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(700, 400, 0);
+	glTranslatef(transXR, transY, 0);
 	glRotated(rightRotate, 0, 0, 1);
-	glTranslatef(-700, -400, 0);
+	glTranslatef(-transXR, -transY, 0);
 	drawLetter(kpoint, kcode);
 	glPopMatrix();
 
@@ -193,39 +196,36 @@ void processSpecialKeys(int key, int x, int y) {
 		display();
 		break;
 	case GLUT_KEY_HOME:
+		transXL = 700;
+		transXR = 700;
+		transY = 400;
 		leftRotate -= 2;
 		rightRotate -= 2;
 		display();
 		break;
 	case GLUT_KEY_END:
+		transXL = 700;
+		transXR = 700;
+		transY = 400;
 		leftRotate += 2;
 		rightRotate += 2;
 		display();
 		break;
 	case GLUT_KEY_PAGE_UP:
+		transXL = 450;
+		transXR = 950;
+		transY = 400;
 		leftRotate += 2;
 		rightRotate -= 2;
 		display();
+		break;
+	case GLUT_KEY_PAGE_DOWN:
+		transXL = 450;
+		transXR = 950;
+		transY = 400;
+		leftRotate -= 2;
+		rightRotate += 2;
+		display();
+		break;
 	}
-}
-
-void rotateCW() {
-	glTranslatef(700, 400, 0);
-	glRotated(leftRotate, 0, 0, 1);
-	glTranslatef(-700, -400, 0);
-}
-
-void rotateCCW() {
-	glTranslatef(700, 400, 0);
-	glRotated(2, 0, 0, 1);
-	glTranslatef(-700, -400, 0);
-}
-
-void drawS() {
-
-	
-	
-	drawLetter(spoint, scode);
-
-	
 }

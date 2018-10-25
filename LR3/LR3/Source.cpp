@@ -13,7 +13,7 @@ int main(int argc, char * argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowSize(800, 800);
-	glutCreateWindow("LR3_2");
+	glutCreateWindow("LR3_1");
 	glutReshapeFunc(reshape);
 	glutDisplayFunc(display);
 	glutKeyboardFunc(processNormalKeys);
