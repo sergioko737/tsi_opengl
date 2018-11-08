@@ -32,9 +32,11 @@ void reshape(int w, int h)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-15, 15, -15, 15, -15, 15);
-	gluPerspective(120, 1, 0, 30);
+
+	//glOrtho(-15, 15, -15, 15, -15, 15);
+	gluPerspective(60, 1, 0, 20);
 	gluLookAt(15, 15, 15, 0, 0, 0, 0, 1, 0);
+	
 	glMatrixMode(GL_MODELVIEW);
 	
 	glLoadIdentity();
@@ -44,28 +46,51 @@ void reshape(int w, int h)
 void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(1.0, 0.0, 0.0);
-
-	glutWireTeapot(5);
 
 	glPushMatrix();
 	glLoadIdentity();
-
 	int y = glutGet(GLUT_WINDOW_HEIGHT);
 	int x = glutGet(GLUT_WINDOW_WIDTH);
 	glColor3d(0, 0, 0);
 	glBegin(GL_LINES);
+	glColor3d(1, 0, 0);
 	glVertex3f(0, 0, 0);
 	glVertex3f(100, 0, 0);
+	glColor3d(0, 1, 0);
 	glVertex3f(0, 0, 0);
 	glVertex3f(0, 100, 0);
-	glColor3d(0, 1, 0);
-	glLineWidth(4.0);
+	glColor3d(0, 0, 1);
 	glVertex3f(0, 0, 0);
 	glVertex3f(0, 0, 100);
 	glEnd();
-
 	glPopMatrix();
+
+
+	glColor3f(1.0, 0.0, 0.0);
+
+	//glutWireTeapot(5);
+	//glutSolidTeapot(3);
+	//glutSolidSphere(3, 30, 30);
+	//glutWireSphere(3, 127, 127);
+	//glutSolidCube(3);
+	//glutWireCube(3);
+	//glutSolidTorus(3, 5, 15, 7);
+	//glutWireTorus(1, 5, 15, 17);
+	//glutSolidCone(4, 7, 12, 12);
+	//glutWireCone(4, 7, 12, 12);
+	//glutSolidTetrahedron();
+	//glutWireTetrahedron();
+	//glutSolidOctahedron();
+	//glutWireOctahedron();
+	//glutSolidDodecahedron();
+	//glutWireDodecahedron();
+	//glutSolidIcosahedron();
+	glPushMatrix();
+	//glTranslated(5, 5, 0);
+	glutWireIcosahedron();
+	glTranslated(-3, 0, 0);
+	glPopMatrix();
+
 
 	glutSwapBuffers();
 }
@@ -74,18 +99,34 @@ void processNormalKeys(unsigned char key, int x, int y)
 {
 	if (key == 27)
 		exit(0);
+	// key + to enlarge
+	if (key == 43) {
+		glScaled(1.05, 1.05, 1.05);
+		display();
+	}
+	// key - to reduce size
+	if (key == 45) {
+		glScaled(0.95, 0.95, 0.95);
+		display();
+	}
+	// DELETE key
+	if (key == 127) {
+		glMatrixMode(GL_MODELVIEW);
+		glRotated(5, 0, 0, 1);
+		display();
+	}
 }
 
 void processSpecialKeys(int key, int x, int y) {
 	switch (key) {
 	case GLUT_KEY_UP:
 		glMatrixMode(GL_MODELVIEW);
-		glTranslated(0, 1, 0);
+		glTranslated(1, 1, 1);
 		display();
 		break;
 	case GLUT_KEY_DOWN:
 		glMatrixMode(GL_MODELVIEW);
-		glTranslated(0, -1, 0);
+		glTranslated(-1, -1, -1);
 		display();
 		break;
 	case GLUT_KEY_LEFT:
@@ -96,6 +137,22 @@ void processSpecialKeys(int key, int x, int y) {
 	case GLUT_KEY_RIGHT:
 		glMatrixMode(GL_MODELVIEW);
 		glTranslated(1, 0, 0);
+		display();
+		break;
+	case GLUT_KEY_HOME:
+		glMatrixMode(GL_MODELVIEW);
+		glRotated(5, 1, 0, 0);
+		display();
+		break;
+	case GLUT_KEY_END:
+		glMatrixMode(GL_MODELVIEW);
+		glRotated(5, 0, 1, 0);
+		display();
+		break;
+	case GLUT_KEY_PAGE_UP:
+		display();
+		break;
+	case GLUT_KEY_PAGE_DOWN:
 		display();
 		break;
 	}
