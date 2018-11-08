@@ -32,10 +32,11 @@ void reshape(int w, int h)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	//glOrtho(-30, 30, -30, 30, -30, 30);
-	gluPerspective(90, 2, 0, 30);
-	gluLookAt(0, 0, 40, 0, 0, 0, 0, 1, 0);
+	glOrtho(-15, 15, -15, 15, -15, 15);
+	gluPerspective(120, 1, 0, 30);
+	gluLookAt(15, 15, 15, 0, 0, 0, 0, 1, 0);
 	glMatrixMode(GL_MODELVIEW);
+	
 	glLoadIdentity();
 	glClearColor(1, 1, 1, 0);
 }
@@ -45,7 +46,7 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0, 0.0, 0.0);
 
-	glutWireTeapot(7);
+	glutWireTeapot(5);
 
 	glPushMatrix();
 	glLoadIdentity();
@@ -61,7 +62,7 @@ void display()
 	glColor3d(0, 1, 0);
 	glLineWidth(4.0);
 	glVertex3f(0, 0, 0);
-	glVertex3f(-15, -15, 0);
+	glVertex3f(0, 0, 100);
 	glEnd();
 
 	glPopMatrix();
