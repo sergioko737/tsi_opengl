@@ -56,7 +56,7 @@ int main(int argc, char * argv[])
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
 
 	glutInitWindowSize(800, 600);
-	glutCreateWindow("OpenGL lesson 7");
+	glutCreateWindow("LR 5");
 
 	glutReshapeFunc(reshape);
 	glutDisplayFunc(display);
