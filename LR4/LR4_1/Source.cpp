@@ -38,9 +38,9 @@ void reshape(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	//glOrtho(-15, 15, -15, 15, -15, 15);
-	gluPerspective(60, 1, 0, 20);
-	gluLookAt(15, 15, 15, 0, 0, 0, 0, 1, 0);
+	glOrtho(-15, 15, -15, 15, -15, 15);
+	//gluPerspective(60, 1, 0, 20);
+	//gluLookAt(15, 15, 15, 0, 0, 0, 0, 1, 0);
 	
 	glMatrixMode(GL_MODELVIEW);
 	
