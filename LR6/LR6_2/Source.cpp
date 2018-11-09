@@ -2,7 +2,7 @@
 #include <math.h>
 #define PI 3.141592653
 
-int light_sample = 1;
+int light_sample = 5;
 
 void init(void) {
 	glClearColor(0.3, 0.3, 0.3, 0.0); // рассчет освещения 

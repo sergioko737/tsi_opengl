@@ -16,6 +16,7 @@ double axisX = 0;
 double axisY = 0;
 double axisZ = 0;
 double angle = 0;
+float r, g, b;
 
 void reshape(int w, int h);
 void drawLetter();
@@ -48,16 +49,36 @@ void readfromfile()
 	f.close();
 }
 
+void init(void) {
+	GLfloat mat_specular[] = { 0, 0, 1.0, 1.0 };
+	GLfloat mat_shininess[] = { 50.0 };
+	GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
+	GLfloat white_light[] = { 1.0, 1.0, 0, 1.0 };
+
+	glClearColor(0.0, 0.0, 0.0, 0.0);
+	glShadeModel(GL_SMOOTH);
+	//glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, white_light);
+	//glLightfv(GL_LIGHT0, GL_SPECULAR, white_light);
+
+	//glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	//glEnable(GL_DEPTH_TEST);
+}
+
+
 int main(int argc, char * argv[])
 {
 	readfromfile();
 
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
+	
 	glutInitWindowSize(800, 600);
 	glutCreateWindow("LR 6");
-
+	init();
 	glutReshapeFunc(reshape);
 	glutDisplayFunc(display);
 	glutKeyboardFunc(processNormalKeys);
@@ -75,9 +96,9 @@ void reshape(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	//glOrtho(-5, 25, -5, 25, -15, 15);
-	gluPerspective(60, 1, 0, 20);
-	gluLookAt(10, 10, 55, 10, 10, 0, 0, 1, 0);
+	glOrtho(-5, 25, -5, 25, -15, 15);
+	/*gluPerspective(60, 1, 0, 20);
+	gluLookAt(10, 10, 55, 10, 10, 0, 0, 1, 0);*/
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -86,7 +107,8 @@ void reshape(int w, int h)
 void display()
 {
 	glClearColor(1, 1, 1, 0);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 
 	glPushMatrix();
 	glLoadIdentity();
@@ -201,9 +223,15 @@ void drawLetter() {
 	for (int i = 0; i < face_count; i++)
 	{
 		glBegin(GL_QUADS);
+		
 		for (int j = 0; j < faces[i].size(); j++)
 		{
-			glColor3f(i, j, 0.0);
+			if (i < 10) {r = i; g = 0; b = 0; }
+			else {
+				if (i < 20) { r = 0; g = i; b = 0; }
+				else { r = 0; g = 0; b = i; }
+			}
+			glColor3f(r/10.0,g/20.0,b/30.0);
 			glVertex3f(v[faces[i][j]].x, v[faces[i][j]].y, v[faces[i][j]].z);
 		}
 		glEnd();
