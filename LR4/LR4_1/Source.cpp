@@ -9,6 +9,11 @@ void display();
 void processNormalKeys(unsigned char key, int x, int y);
 void processSpecialKeys(int key, int x, int y);
 
+double axisX = 0;
+double axisY = 0;
+double axisZ = 0;
+double angle = 0;
+
 int main(int argc, char * argv[])
 {
 	glutInit(&argc, argv);
@@ -67,13 +72,16 @@ void display()
 
 
 	glColor3f(1.0, 0.0, 0.0);
-
+	glPushMatrix();
+	//glTranslated(1, 1, 1);
+	glRotated(angle, axisX, axisY, axisZ);
+	//glTranslated(-1, -1, -1);
 	//glutWireTeapot(5);
 	//glutSolidTeapot(3);
 	//glutSolidSphere(3, 30, 30);
 	//glutWireSphere(3, 127, 127);
 	//glutSolidCube(3);
-	//glutWireCube(3);
+	glutWireCube(3);
 	//glutSolidTorus(3, 5, 15, 7);
 	//glutWireTorus(1, 5, 15, 17);
 	//glutSolidCone(4, 7, 12, 12);
@@ -85,10 +93,7 @@ void display()
 	//glutSolidDodecahedron();
 	//glutWireDodecahedron();
 	//glutSolidIcosahedron();
-	glPushMatrix();
-	//glTranslated(5, 5, 0);
 	glutWireIcosahedron();
-	glTranslated(-3, 0, 0);
 	glPopMatrix();
 
 
@@ -109,10 +114,22 @@ void processNormalKeys(unsigned char key, int x, int y)
 		glScaled(0.95, 0.95, 0.95);
 		display();
 	}
+	// move along Z axis Q,A keys
+	if (key == 81) {
+		glTranslated(0, 0, -1);
+		display();
+	}
+	if (key == 65) {
+		glTranslated(0, 0, 1);
+		display();
+	}
+
 	// DELETE key
 	if (key == 127) {
-		glMatrixMode(GL_MODELVIEW);
-		glRotated(5, 0, 0, 1);
+		axisX = 0;
+		axisY = 0;
+		axisZ = 1;
+		angle += 5;
 		display();
 	}
 }
@@ -121,12 +138,12 @@ void processSpecialKeys(int key, int x, int y) {
 	switch (key) {
 	case GLUT_KEY_UP:
 		glMatrixMode(GL_MODELVIEW);
-		glTranslated(1, 1, 1);
+		glTranslated(0, 1, 0);
 		display();
 		break;
 	case GLUT_KEY_DOWN:
 		glMatrixMode(GL_MODELVIEW);
-		glTranslated(-1, -1, -1);
+		glTranslated(0, -1, 0);
 		display();
 		break;
 	case GLUT_KEY_LEFT:
@@ -140,19 +157,31 @@ void processSpecialKeys(int key, int x, int y) {
 		display();
 		break;
 	case GLUT_KEY_HOME:
-		glMatrixMode(GL_MODELVIEW);
-		glRotated(5, 1, 0, 0);
+		axisX = 1;
+		axisY = 0;
+		axisZ = 0;
+		angle += 5;
 		display();
 		break;
 	case GLUT_KEY_END:
-		glMatrixMode(GL_MODELVIEW);
-		glRotated(5, 0, 1, 0);
+		axisX = 0;
+		axisY = 1;
+		axisZ = 0;
+		angle += 5;
 		display();
 		break;
 	case GLUT_KEY_PAGE_UP:
+		axisX = 1;
+		axisY = 1;
+		axisZ = 1;
+		angle -= 5;
 		display();
 		break;
 	case GLUT_KEY_PAGE_DOWN:
+		axisX = 1;
+		axisY = 1;
+		axisZ = 1;
+		angle += 5;
 		display();
 		break;
 	}
