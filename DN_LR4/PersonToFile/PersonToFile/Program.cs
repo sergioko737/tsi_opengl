@@ -10,6 +10,7 @@ namespace PersonToFile
     {
         static void Main(string[] args)
         {
+            DirectoryInfo
         }
     }
 }
