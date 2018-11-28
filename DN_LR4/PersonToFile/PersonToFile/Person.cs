@@ -4,48 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonToFile
+namespace PersonToFIle
 {
     [Serializable]
     class Person
     {
-        private String name;
-        private String persCode;
-        private int age;
-
-        public String Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
-
-        public String PersCode
-        {
-            get
-            {
-                return persCode;
-            }
-            set
-            {
-                persCode = value;
-            }
-        }
-        public int Age
-        {
-            get
-            {
-                return age;
-            }
-            set
-            {
-                age = value;
-            }
-        }
+        public String username { get; set; }
+        public String code { get; set; }
+        public byte age { get; set; }
     }
 }
