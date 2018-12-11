@@ -50,8 +50,16 @@ namespace PersonsWatcher
     static void OnChanged(object source, FileSystemEventArgs e)
         {
             // Показать, что сделано, если файл изменен, создан или удален.
-            Console.WriteLine("File : {0} {1}!,", e.FullPath, e.ChangeType);
+            if (e.ChangeType.ToString() == "Deleted")
+            {
+                Console.WriteLine("The file {0} is {1}", e.Name, e.ChangeType.ToString().ToLower());
+            }
+            else
+            {
+                Console.WriteLine("File : {0} {1}!,", e.FullPath, e.ChangeType);
+            }
         }
+
 
         static void OnRenamed(object source, RenamedEventArgs e)
         {
