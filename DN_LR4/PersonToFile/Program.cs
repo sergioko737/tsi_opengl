@@ -62,7 +62,7 @@ namespace PersonToFile
                 persons = (ArrayList)binaryFormatter.Deserialize(fileStream);
                 fileStream.Position = 0;
             }
-
+            
             if (persons.Count > 0)
             {
                 Console.Write("Do you want output file? (y/n)? ");
@@ -129,6 +129,7 @@ namespace PersonToFile
             program.start();
 
             Console.Write("Press any key to exit");
+            
             Console.ReadKey();
         }
 
@@ -143,7 +144,7 @@ namespace PersonToFile
                 }
                 person = new Person();
 
-                Console.Write("Enter username: ");
+                Console.Write("Enter name: ");
                 person.name = Console.ReadLine();
 
                 Console.Write("Enter personal code: ");

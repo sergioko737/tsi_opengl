@@ -36,7 +36,8 @@ namespace PersonsWatcher
             // Добавить обработчики событий.
             watcher.Changed += new FileSystemEventHandler(OnChanged);
             watcher.Created += new FileSystemEventHandler(OnChanged);
-            watcher.Deleted += new FileSystemEventHandler(OnChanged);
+            //watcher.Deleted += new FileSystemEventHandler(OnChanged);
+            watcher.Deleted += new FileSystemEventHandler(OnDeleted);
             watcher.Renamed += new RenamedEventHandler(OnRenamed);
             // Начать наблюдение зa файлом.
             watcher.EnableRaisingEvents = true;
@@ -44,27 +45,33 @@ namespace PersonsWatcher
             Console.WriteLine(@"Press q to quit app.");
             while (Console.Read() != 'q') ;
         }
- 
 
-    // Следующие два обработчика событий просто сообщают о модификациях файлов:
-    static void OnChanged(object source, FileSystemEventArgs e)
+
+        // Следующие два обработчика событий просто сообщают о модификациях файлов:
+        static void OnChanged(object source, FileSystemEventArgs e)
         {
             // Показать, что сделано, если файл изменен, создан или удален.
-            if (e.ChangeType.ToString() == "Deleted")
-            {
-                Console.WriteLine("The file {0} is {1}", e.Name, e.ChangeType.ToString().ToLower());
-            }
-            else
-            {
+            //if (e.ChangeType.ToString() == "Deleted")
+            //{
+            //    Console.WriteLine("The file {0} is {1}", e.Name, e.ChangeType.ToString().ToLower());
+            //}
+            //else
+            //{
                 Console.WriteLine("File : {0} {1}!,", e.FullPath, e.ChangeType);
-            }
+            //}
+        }
+
+        static void OnDeleted(object source, FileSystemEventArgs e)
+        {
+            // Показать, что сделано, если файл изменен, создан или удален.
+            Console.WriteLine("The file {0} is {1}", e.Name, e.ChangeType.ToString().ToLower());
         }
 
 
         static void OnRenamed(object source, RenamedEventArgs e)
         {
-        // Показать, что файл был переименован.
-        Console.WriteLine("File: {0} renamed to {1}", e.OldFullPath, e.FullPath);
+            // Показать, что файл был переименован.
+            Console.WriteLine("File: {0} renamed to {1}", e.OldFullPath, e.FullPath);
         }
     }
 }
