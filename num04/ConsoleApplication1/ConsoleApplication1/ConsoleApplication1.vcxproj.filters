@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\change.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\diff.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\file.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\gear.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\graph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\integration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\malloc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\output.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\read.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\time.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\Makefile">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\file.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\gear.d">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\gear.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\graph.d">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\graph.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\integration.d">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\integration.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\main.d">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\main.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\malloc.d">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\malloc.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\matrix.d">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\matrix.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\output.d">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\output.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\read.d">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\read.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\time.d">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\time.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\change.d">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\change.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\diff.d">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\diff.o">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\file.d">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Desktop\gear\Gear_Method-master\inc\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Desktop\gear\Gear_Method-master\inc\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7E96D507-0E86-4338-B39F-47F1FE3A66BC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ConsoleApplication1</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\change.c" />
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\diff.c" />
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\file.c" />
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\gear.c" />
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\graph.c" />
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\integration.c" />
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\main.c" />
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\malloc.c" />
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\matrix.c" />
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\output.c" />
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\read.c" />
+    <ClCompile Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\time.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\change.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\change.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\diff.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\diff.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\file.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\file.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\gear.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\gear.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\graph.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\graph.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\integration.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\integration.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\main.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\main.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\malloc.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\malloc.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\matrix.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\matrix.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\output.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\output.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\read.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\read.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\time.d" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\obj\time.o" />
+    <None Include="..\..\..\..\Desktop\gear\Gear_Method-master\src\Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Desktop\gear\Gear_Method-master\inc\common.h" />
+    <ClInclude Include="..\..\..\..\Desktop\gear\Gear_Method-master\inc\main.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
