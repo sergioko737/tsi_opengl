@@ -11,8 +11,6 @@ namespace PersonToFile
 {
     class Program
     {
-        FileInfo file;
-
         static void Main(string[] args)
         {
             int action = 0;
@@ -32,16 +30,26 @@ namespace PersonToFile
             if (!file.Exists)
             {
                 Console.WriteLine("The file persons.dat does not exist!\nCreating file persons.dat");
-                file.Create();
+                FileStream fileStream = file.Create();
+                fileStream.Close();
             }
             else
             {
                 Console.WriteLine("The file persons.dat exist!");
-
-
+                Console.WriteLine("***************************");
+                Console.WriteLine("File name: {0}", file.Name);
+                Console.WriteLine("File size: {0}", file.Length);
+                Console.WriteLine("Creation: {0}", file.CreationTime);
+                Console.WriteLine("Attributes: {0}", file.Attributes);
+                Console.WriteLine("***************************\n");
                 FileStream fileStream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                persons = (ArrayList)binaryFormatter.Deserialize(fileStream);
-                fileStream.Position = 0;
+                if (file.Length > 0)
+                {
+                    persons = (ArrayList)binaryFormatter.Deserialize(fileStream);
+                    fileStream.Position = 0;
+                    fileStream.Close();
+                }
+                
                 fileStream.Close();
             }
 
@@ -72,9 +80,22 @@ namespace PersonToFile
                                 Console.Write("\nDo you wan't to continue? (y/n)? ");
 
                             } while (Console.ReadKey().KeyChar == 'y');
+                            
                             Console.ReadLine();
 
                             BinaryFormatter binFormat = new BinaryFormatter();
+
+                            FileInfo file2 = new FileInfo(@".\PERSON\persons.dat");
+                            if (!file2.Exists)
+                            {
+                                Console.WriteLine("The file persons.dat does not exist!\nCreating file persons.dat");
+                                FileStream fileStream = file2.Create();
+                                fileStream.Close();
+                            }
+                            else
+                            {
+                                Console.WriteLine("File in place. Proceeding!");
+                            }
                             FileStream fStream = new FileStream(@"./person/persons.dat",
                                         FileMode.Open, FileAccess.ReadWrite, FileShare.None);
                             binFormat.Serialize(fStream, persons);
@@ -83,9 +104,6 @@ namespace PersonToFile
                         }
                     case 2:
                         {
-
-                            if (file.Exists && file.Length > 0)
-                            {
                                 Console.WriteLine();
                                 for (int i = 0; i < persons.Count; i++)
                                 {
@@ -96,7 +114,7 @@ namespace PersonToFile
                                     Console.WriteLine("Age: {0}", person.age);
                                     Console.WriteLine();
                                 }
-                            }
+                                
                             break;
                         }
                     case 3:
@@ -108,16 +126,6 @@ namespace PersonToFile
             }
             Console.WriteLine("Goodbye!");
             Console.ReadLine();
-        }
-
-        void outputData()
-        {
-            Console.WriteLine("***************************");
-            Console.WriteLine("File name: {0}", file.Name);
-            Console.WriteLine("File size: {0}", file.Length);
-            Console.WriteLine("Creation: {0}", file.CreationTime);
-            Console.WriteLine("Attributes: {0}", file.Attributes);
-            Console.WriteLine("***************************\n");
         }
     }
 }
