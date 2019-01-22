@@ -1,11 +1,21 @@
-Переменные
+Variables
+
+for   j0
+i   j1
+n   j2
+if   j3
+a   j4
+b   j5
+while   j6
+d   j7
+
+Constant
+
+10   c0
+20   c1
+
+Keywords
 
 
-Константы
-
-
-Ключевые слова
-
-
-Операции
+Operations
 

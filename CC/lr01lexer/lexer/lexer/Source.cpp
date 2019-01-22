@@ -5,7 +5,7 @@
 using namespace std;
 
 ifstream cin_code("input.txt");
-ifstream cin_key("key.txt");
+ifstream cin_keywords("keywords.txt");
 ofstream cout_lexem("lexem.txt");
 ofstream cout_exp("explain.txt");
 ofstream cout_lex("inp.txt");
@@ -103,21 +103,21 @@ void init()
 	list_o = NULL;
 	int k;
 	char ch;
-	cin_key >> k >> ch;
+	cin_keywords >> k >> ch;
 	string s;
 	for (int i = 0; i < k; i++)
 	{
-		cin_key >> s;
+		cin_keywords >> s;
 		push1(list_k, s, i);
 	}
-	cin_key >> k;
+	cin_keywords >> k;
 	for (int i = 0; i < k; i++)
 	{
 		int n;
-		cin_key >> n >> ch;
+		cin_keywords >> n >> ch;
 		for (int j = 0; j < n; j++)
 		{
-			cin_key >> s;
+			cin_keywords >> s;
 			push2(list_o, s, ch, j);
 		}
 	}
@@ -135,12 +135,12 @@ bool Is_Num(char ch)
 
 bool Is_Oper(char ch)
 {
-	return (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '>' || ch == '<' || ch == '&' || ch == '|' || ch == '=' || ch == ';' || ch == '(' || ch == ')' || ch == '{' || ch == '}') ? true : false;
+	return (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '>' || ch == '<' || ch == '&' || ch == '|' || ch == '=' || ch == ';' || ch == '.' || ch == '(' || ch == ')' || ch == '{' || ch == '}') ? true : false;
 }
 
 bool Is_Separ(char ch)
 {
-	return (ch == ' ' || ch == '\n' || ch == ')' || ch == '(' || ch == ';' || ch == '}' || ch == '{' || (!flagO && mg != "" && Is_Oper(ch))) ? true : false;
+	return (ch == ' ' || ch == '\n' || ch == ')' || ch == '(' || ch == ';' || ch == '}' || ch == '{'  ||(!flagO && mg != "" && Is_Oper(ch))) ? true : false;
 }
 
 void Clear_mg(string &mg)
@@ -317,14 +317,13 @@ void print3(queue2 *head)
 
 void print(queue1 *list_k, queue2 *list_o, queue1 *list_v, queue1 *list_c)
 {
-	cout_exp << "Переменные" << endl << endl;
-	
+	cout_exp << "Variables" << endl << endl;
 	print2(list_v, "j");
-	cout_exp << endl << "Константы" << endl << endl;
+	cout_exp << endl << "Constant" << endl << endl;
 	print2(list_c, "c");
-	cout_exp << endl << "Ключевые слова" << endl << endl;
+	cout_exp << endl << "Keywords" << endl << endl;
 	print2(list_k, "k");
-	cout_exp << endl << "Операции" << endl << endl;
+	cout_exp << endl << "Operations" << endl << endl;
 	print3(list_o);
 
 }
@@ -340,23 +339,27 @@ int main()
 	automat(mg, ' ');
 	print(list_k, list_o, list_v, list_c);
 
-	for (int i = 0; i < num_lex; i++)
+	for (int i = 0; i < num_lex; i++){
+		cout << lexem[i] << endl;
 		cout_lexem << lexem[i] << endl;
+	}
+	cout << lexem[0] << endl;
 
 	cout_lex << num_lex << "\n";
-	for (int i = 0; i < num_lex; i++)
+	for (int i = 0; i < num_lex; i++){
 		cout_lex << lexem[i][0] << lexem[i][1] << endl;
+	}
+		
 
 	cout_res << push0(list_v, "") << endl;
 	for (queue1 *t = list_v; t->next; t = t->next){
 		cout_res << t->word << endl;
-		cout << "v list" << endl;
 	}
 	cout_res << endl << push0(list_c, "") << endl;
 	for (queue1 *t = list_c; t->next; t = t->next){
 		cout_res << t->word << endl;
-		cout << t << "t list"<< endl;
 	}
+	
 	system("pause");
 	return 0;
 }
