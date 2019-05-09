@@ -1,0 +1,14 @@
+and
+Text
+if
+(
+
+CEdit1
+.
+=
+)
+KEdit2
+then
+ShowMessage
+Please enter data
+;

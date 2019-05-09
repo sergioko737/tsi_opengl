@@ -1,0 +1,4 @@
+CEdit1
+Text
+KEdit2
+ShowMessage

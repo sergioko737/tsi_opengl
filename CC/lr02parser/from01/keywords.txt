@@ -1,0 +1,17 @@
+Procedure
+var
+extEnded
+rec
+integer
+Begin
+if
+and
+then
+else
+StrToFloat
+while
+not
+EoF
+do
+End
+IntToStr
