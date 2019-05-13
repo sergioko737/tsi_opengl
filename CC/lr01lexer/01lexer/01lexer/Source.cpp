@@ -170,19 +170,21 @@ void dfa(string &buffer, char ch){
 				lexemTable << "L " << literal << endl;
 				literList.push_back(buffer);
 			}
+			literal++;
 			uList.insert(buffer);
 		}
 
 		else{
 			if (literList.end() != find(literList.begin(), literList.end(), "NULL")){
 				it = find(literList.begin(), literList.end(), "NULL");
-				cout << "L " << distance(literList.begin(), it) << " " << buffer << endl;
+				cout << "L " << distance(literList.begin(), it) << " NULL" << endl;
 				lexemTable << "L " << distance(literList.begin(), it) << endl;
 			}
 			else{
-				cout << "L " << literal << " " << "NULL" << endl;
+				cout << "L " << literal << " NULL" << endl;
 				lexemTable << "L " << literal << endl;
 				literList.push_back("NULL");
+				literal++;
 			}
 
 			uList.insert(buffer);
@@ -190,7 +192,7 @@ void dfa(string &buffer, char ch){
 
 
 
-		literal++;
+		
 	}
 }
 
